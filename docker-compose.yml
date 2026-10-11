@@ -1,0 +1,132 @@
+version: "3.9"
+
+# ============================================
+# German Waste Processor — Local Development
+# ============================================
+# Usage:
+#   docker-compose up -d          # Start all services
+#   docker-compose down           # Stop all services
+#   docker-compose logs -f        # View logs
+#   docker-compose build --no-cache  # Rebuild
+#
+# Prerequisites:
+#   - Docker Desktop installed
+#   - backend/.env file created (copy from .env.example)
+# ============================================
+
+services:
+  # ============================================
+  # Backend (FastAPI + Playwright)
+  # ============================================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: waste-processor-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      # Application
+      - APP_NAME=German Waste Processor
+      - APP_VERSION=1.0.0
+      - ENVIRONMENT=development
+      - DEBUG=true
+      - LOG_LEVEL=INFO
+
+      # Database (read from host .env file)
+      - DATABASE_URL=${DATABASE_URL}
+
+      # Security
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=15
+      - REFRESH_TOKEN_EXPIRE_DAYS=7
+
+      # Initial Admin
+      - ADMIN_INITIAL_USERNAME=${ADMIN_INITIAL_USERNAME}
+      - ADMIN_INITIAL_EMAIL=${ADMIN_INITIAL_EMAIL}
+      - ADMIN_INITIAL_PASSWORD=${ADMIN_INITIAL_PASSWORD}
+
+      # Email
+      - RESEND_API_KEY=${RESEND_API_KEY}
+      - EMAIL_FROM=${EMAIL_FROM}
+      - EMAIL_FROM_NAME=${EMAIL_FROM_NAME}
+
+      # Nominatim
+      - NOMINATIM_BASE_URL=https://nominatim.openstreetmap.org
+      - NOMINATIM_USER_AGENT=german-waste-processor/1.0
+      - NOMINATIM_TIMEOUT_SECONDS=5
+
+      # HuggingFace
+      - HUGGINGFACE_API_KEY=${HUGGINGFACE_API_KEY}
+
+      # Scraping
+      - PLAYWRIGHT_HEADLESS=true
+      - PLAYWRIGHT_TIMEOUT_MS=7000
+      - SCRAPING_TIMEOUT_SECONDS=45
+      - SCRAPING_MAX_RETRIES=3
+
+      # Cache
+      - CACHE_TTL_DAYS=7
+
+      # Rate Limiting
+      - RATE_LIMIT_PUBLIC_PER_MINUTE=10
+      - RATE_LIMIT_ADMIN_PER_MINUTE=60
+      - RATE_LIMIT_TEST_CONNECTION_PER_MINUTE=10
+
+      # CORS (allow frontend dev server)
+      - CORS_ORIGINS=http://localhost:5500,http://127.0.0.1:5500,http://localhost:3000,http://127.0.0.1:3000
+
+      # Timezone
+      - TIMEZONE=Europe/Berlin
+
+      # Server
+      - HOST=0.0.0.0
+      - PORT=8000
+    volumes:
+      # Mount backend code for hot reload
+      - ./backend:/app
+      # Exclude venv from container
+      - /app/.venv
+    networks:
+      - waste-processor-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 512M
+
+  # ============================================
+  # Frontend (Static HTML + Tailwind)
+  # ============================================
+  # Simple nginx server for static files
+  frontend:
+    image: nginx:alpine
+    container_name: waste-processor-frontend
+    restart: unless-stopped
+    ports:
+      - "5500:80"
+    volumes:
+      # Mount frontend files
+      - ./frontend:/usr/share/nginx/html:ro
+      # Custom nginx config for SPA routing
+      - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - waste-processor-network
+    depends_on:
+      - backend
+
+# ============================================
+# Networks
+# ============================================
+networks:
+  waste-processor-network:
+    driver: bridge

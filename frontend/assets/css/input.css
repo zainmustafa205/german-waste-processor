@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   Custom Base Styles
+   ============================================ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+  }
+
+  /* Prevent layout shift during font loading */
+  * {
+    font-display: swap;
+  }
+}
+
+/* ============================================
+   Custom Components
+   ============================================ */
+@layer components {
+  /* Anti-flicker skeleton loader */
+  .skeleton {
+    @apply animate-pulse bg-slate-200 rounded;
+  }
+
+  /* Waste type badges */
+  .badge-organic {
+    @apply bg-amber-950 text-amber-50 px-2 py-1 rounded text-xs font-medium;
+  }
+
+  .badge-paper {
+    @apply bg-blue-600 text-white px-2 py-1 rounded text-xs font-medium;
+  }
+
+  .badge-plastic {
+    @apply bg-amber-400 text-slate-900 px-2 py-1 rounded text-xs font-medium;
+  }
+
+  .badge-residual {
+    @apply bg-zinc-800 text-zinc-100 px-2 py-1 rounded text-xs font-medium;
+  }
+
+  /* Test connection button (anti-flicker) */
+  .test-connection-btn {
+    min-width: 140px;
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+}
+
+/* ============================================
+   Custom Utilities
+   ============================================ */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "app": {
+    "title": "Abfuhrkalender",
+    "subtitle": "Ihr persönlicher Abfallkalender",
+    "language_switch": "Sprache"
+  },
+  "nav": {
+    "home": "Startseite",
+    "admin": "Verwaltung"
+  },
+  "search": {
+    "title": "Adresse eingeben",
+    "street_label": "Straße",
+    "street_placeholder": "z.B. Musterstraße",
+    "house_number_label": "Hausnummer",
+    "house_number_placeholder": "z.B. 12a",
+    "postcode_label": "PLZ",
+    "postcode_placeholder": "z.B. 10115",
+    "city_label": "Stadt",
+    "city_placeholder": "z.B. Berlin",
+    "search_button": "Suchen",
+    "searching": "Suche läuft..."
+  },
+  "results": {
+    "today": "Heute",
+    "no_collection_today": "Keine Abholung heute",
+    "next_week": "Nächste 7 Tage",
+    "past_week": "Letzte 7 Tage",
+    "no_results": "Keine Abholtermine gefunden",
+    "collection_at": "Abholung um",
+    "unknown_time": "Zeit nicht verfügbar"
+  },
+  "waste_types": {
+    "organic": "Bioabfall",
+    "paper": "Altpapier",
+    "plastic": "Gelber Sack",
+    "residual": "Restmüll",
+    "bulky": "Sperrmüll",
+    "green_waste": "Grünschnitt"
+  },
+  "frequency": {
+    "regular": "Regelmäßig",
+    "irregular": "Unregelmäßig",
+    "weekly": "Wöchentlich",
+    "bi_weekly": "Zweiwöchentlich",
+    "monthly": "Monatlich",
+    "quarterly": "Vierteljährlich",
+    "on_demand": "Auf Anfrage",
+    "unknown": "Unbekannt"
+  },
+  "days": {
+    "monday": "Montag",
+    "tuesday": "Dienstag",
+    "wednesday": "Mittwoch",
+    "thursday": "Donnerstag",
+    "friday": "Freitag",
+    "saturday": "Samstag",
+    "sunday": "Sonntag"
+  },
+  "errors": {
+    "network_error": "Netzwerkfehler. Bitte versuchen Sie es erneut.",
+    "invalid_address": "Ungültige Adresse.",
+    "not_found": "Adresse nicht gefunden.",
+    "timeout": "Zeitüberschreitung. Bitte versuchen Sie es erneut.",
+    "server_error": "Serverfehler. Bitte versuchen Sie es später."
+  },
+  "admin": {
+    "title": "Verwaltung",
+    "test_connection": "Verbindung testen",
+    "testing": "Teste...",
+    "online": "Online",
+    "offline": "Offline"
+  }
+}

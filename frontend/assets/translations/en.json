@@ -1,0 +1,74 @@
+{
+  "app": {
+    "title": "Waste Collection Calendar",
+    "subtitle": "Your personal waste collection calendar",
+    "language_switch": "Language"
+  },
+  "nav": {
+    "home": "Home",
+    "admin": "Admin"
+  },
+  "search": {
+    "title": "Enter Address",
+    "street_label": "Street",
+    "street_placeholder": "e.g. Musterstrasse",
+    "house_number_label": "House Number",
+    "house_number_placeholder": "e.g. 12a",
+    "postcode_label": "Postcode",
+    "postcode_placeholder": "e.g. 10115",
+    "city_label": "City",
+    "city_placeholder": "e.g. Berlin",
+    "search_button": "Search",
+    "searching": "Searching..."
+  },
+  "results": {
+    "today": "Today",
+    "no_collection_today": "No collection today",
+    "next_week": "Next 7 Days",
+    "past_week": "Past 7 Days",
+    "no_results": "No collection dates found",
+    "collection_at": "Collection at",
+    "unknown_time": "Time not available"
+  },
+  "waste_types": {
+    "organic": "Organic",
+    "paper": "Paper",
+    "plastic": "Plastic",
+    "residual": "Residual",
+    "bulky": "Bulky Waste",
+    "green_waste": "Green Waste"
+  },
+  "frequency": {
+    "regular": "Regular",
+    "irregular": "Irregular",
+    "weekly": "Weekly",
+    "bi_weekly": "Bi-weekly",
+    "monthly": "Monthly",
+    "quarterly": "Quarterly",
+    "on_demand": "On-demand",
+    "unknown": "Unknown"
+  },
+  "days": {
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday"
+  },
+  "errors": {
+    "network_error": "Network error. Please try again.",
+    "invalid_address": "Invalid address.",
+    "not_found": "Address not found.",
+    "timeout": "Request timed out. Please try again.",
+    "server_error": "Server error. Please try later."
+  },
+  "admin": {
+    "title": "Admin",
+    "test_connection": "Test Connection",
+    "testing": "Testing...",
+    "online": "Online",
+    "offline": "Offline"
+  }
+}

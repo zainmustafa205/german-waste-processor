@@ -1,0 +1,21 @@
+{
+  "name": "german-waste-processor-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for German Waste Collection Schedule Processor",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --watch",
+    "build": "tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --minify",
+    "clean": "rimraf ./assets/css/output.css"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.14",
+    "postcss": "^8.4.47",
+    "autoprefixer": "^10.4.20",
+    "rimraf": "^6.0.1"
+  }
+}

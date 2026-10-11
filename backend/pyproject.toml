@@ -1,0 +1,178 @@
+# ============================================
+# Project Metadata
+# ============================================
+[project]
+name = "german-waste-processor"
+version = "1.0.0"
+description = "German waste collection schedule processor API"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Proprietary" }
+authors = [
+    { name = "Waqas World Digital Hub", email = "wdh.global.official@gmail.com" }
+]
+
+# ============================================
+# Build System
+# ============================================
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+# ============================================
+# Ruff - Linter & Formatter
+# ============================================
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["app", "tests"]
+
+exclude = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "alembic/versions",
+    "build",
+    "dist",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "B",    # flake8-bugbear
+    "C4",   # flake8-comprehensions
+    "UP",   # pyupgrade
+    "ARG",  # flake8-unused-arguments
+    "SIM",  # flake8-simplify
+    "TID",  # flake8-tidy-imports
+    "S",    # flake8-bandit (security)
+]
+
+ignore = [
+    "E501",   # line too long (handled by formatter)
+    "B008",   # do not perform function call in argument defaults
+    "S101",   # use of assert (needed for tests)
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101", "ARG001", "ARG002"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]
+known-third-party = ["fastapi", "sqlalchemy", "pydantic", "playwright"]
+
+# ============================================
+# Black - Code Formatter
+# ============================================
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+    \.git
+  | \.venv
+  | __pycache__
+  | alembic/versions
+  | build
+  | dist
+)/
+'''
+
+# ============================================
+# isort - Import Sorter
+# ============================================
+[tool.isort]
+profile = "black"
+line_length = 100
+known_first_party = ["app"]
+known_third_party = ["fastapi", "sqlalchemy", "pydantic", "playwright"]
+skip_glob = ["alembic/versions/*"]
+src_paths = ["app", "tests"]
+
+# ============================================
+# mypy - Type Checker
+# ============================================
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+ignore_missing_imports = true
+exclude = [
+    "alembic/versions",
+    "build",
+    "dist",
+]
+
+[[tool.mypy.overrides]]
+module = [
+    "playwright.*",
+    "playwright_stealth.*",
+    "scylla.*",
+    "pdfplumber.*",
+    "icalendar.*",
+    "resend.*",
+]
+ignore_missing_imports = true
+
+# ============================================
+# pytest - Testing
+# ============================================
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
+addopts = [
+    "-v",
+    "--strict-markers",
+    "--tb=short",
+    "--cov=app",
+    "--cov-report=term-missing",
+    "--cov-report=html:htmlcov",
+    "--cov-fail-under=80",
+]
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests",
+    "slow: Slow tests (skip with -m 'not slow')",
+    "external: Tests requiring external services",
+]
+
+# ============================================
+# Coverage
+# ============================================
+[tool.coverage.run]
+source = ["app"]
+omit = [
+    "*/tests/*",
+    "*/alembic/*",
+    "*/__pycache__/*",
+    "*/migrations/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "def __str__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "@abstractmethod",
+]
