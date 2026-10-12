@@ -1,0 +1,84 @@
+{
+  "Musterstrasse_12a_10115_Berlin": {
+    "address": {
+      "street": "Musterstrasse",
+      "house_number": "12a",
+      "postcode": "10115",
+      "city": "Berlin"
+    },
+    "results": [
+      {
+        "waste_type": "Organic",
+        "frequency": "Regular",
+        "frequency_details": "Bi-weekly",
+        "next_collection": {
+          "day": "Monday",
+          "date": "2026-10-12",
+          "time": "06:00",
+          "is_today": true,
+          "is_tomorrow": false,
+          "days_until": 0,
+          "confidence": "high"
+        }
+      },
+      {
+        "waste_type": "Paper",
+        "frequency": "Regular",
+        "frequency_details": "Monthly",
+        "next_collection": {
+          "day": "Wednesday",
+          "date": "2026-10-14",
+          "time": "07:30",
+          "is_today": false,
+          "is_tomorrow": false,
+          "days_until": 2,
+          "confidence": "high"
+        }
+      },
+      {
+        "waste_type": "Plastic",
+        "frequency": "Regular",
+        "frequency_details": "Bi-weekly",
+        "next_collection": {
+          "day": "Friday",
+          "date": "2026-10-16",
+          "time": "06:30",
+          "is_today": false,
+          "is_tomorrow": false,
+          "days_until": 4,
+          "confidence": "high"
+        }
+      },
+      {
+        "waste_type": "Residual",
+        "frequency": "Regular",
+        "frequency_details": "Weekly",
+        "next_collection": {
+          "day": "Monday",
+          "date": "2026-10-19",
+          "time": "06:00",
+          "is_today": false,
+          "is_tomorrow": false,
+          "days_until": 7,
+          "confidence": "high"
+        }
+      },
+      {
+        "waste_type": "Bulky",
+        "frequency": "Irregular",
+        "frequency_details": "On-demand",
+        "next_collection": {
+          "day": null,
+          "date": null,
+          "time": null,
+          "is_today": false,
+          "is_tomorrow": false,
+          "days_until": null,
+          "confidence": "low"
+        }
+      }
+    ],
+    "processed_at": "2026-10-12T01:30:00+02:00",
+    "source_url": "https://www.bsr.de/abfuhrkalender"
+  }
+}

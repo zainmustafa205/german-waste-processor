@@ -1,0 +1,85 @@
+{
+  "municipalities": [
+    {
+      "id": 1,
+      "name": "Awista",
+      "city": "Düsseldorf",
+      "postcode_coverage": ["40210", "40211", "40212", "40213"],
+      "configurations_count": 2,
+      "created_at": "2026-10-12T01:30:00+02:00",
+      "test_url": "https://www.awista-kommunal.de/"
+    },
+    {
+      "id": 2,
+      "name": "BSR",
+      "city": "Berlin",
+      "postcode_coverage": ["10115", "10117", "10119"],
+      "configurations_count": 3,
+      "created_at": "2026-10-12T01:30:00+02:00",
+      "test_url": "https://www.bsr.de/abfuhrkalender"
+    },
+    {
+      "id": 3,
+      "name": "AWM München",
+      "city": "München",
+      "postcode_coverage": ["80331", "80333", "80335"],
+      "configurations_count": 2,
+      "created_at": "2026-10-12T01:30:00+02:00",
+      "test_url": "https://www.awm-muenchen.de/abfall-entsorgen/muelltonnen/abfuhrkalender"
+    },
+    {
+      "id": 4,
+      "name": "Stadtreinigung Hamburg",
+      "city": "Hamburg",
+      "postcode_coverage": ["20095", "20097", "20099"],
+      "configurations_count": 2,
+      "created_at": "2026-10-12T01:30:00+02:00",
+      "test_url": "https://www.stadtreinigung.hamburg/abfuhrkalender/"
+    },
+    {
+      "id": 5,
+      "name": "AWB Köln",
+      "city": "Köln",
+      "postcode_coverage": ["50667", "50668", "50670"],
+      "configurations_count": 3,
+      "created_at": "2026-10-12T01:30:00+02:00",
+      "test_url": "https://www.awbkoeln.de/abfuhrkalender/"
+    },
+    {
+      "id": 6,
+      "name": "FES Frankfurt",
+      "city": "Frankfurt am Main",
+      "postcode_coverage": ["60311", "60313", "60314"],
+      "configurations_count": 2,
+      "created_at": "2026-10-12T01:30:00+02:00",
+      "test_url": "https://www.fes-frankfurt.de/services/abfallkalender"
+    },
+    {
+      "id": 7,
+      "name": "AWS Stuttgart",
+      "city": "Stuttgart",
+      "postcode_coverage": ["70173", "70174", "70176"],
+      "configurations_count": 2,
+      "created_at": "2026-10-12T01:30:00+02:00",
+      "test_url": "https://service.stuttgart.de/lhs-services/aws/abfallkalender"
+    },
+    {
+      "id": 8,
+      "name": "Stadtreinigung Leipzig",
+      "city": "Leipzig",
+      "postcode_coverage": ["04109", "04107", "04105"],
+      "configurations_count": 2,
+      "created_at": "2026-10-12T01:30:00+02:00",
+      "test_url": "https://stadtreinigung-leipzig.de/wir-kommen-zu-ihnen/abfallkalender"
+    }
+  ],
+  "stats": {
+    "total_municipalities": 8,
+    "total_configurations": 18,
+    "cache_entries": 0,
+    "cache_hit_rate": 0.0,
+    "average_response_time_ms": 0,
+    "scrapes_last_24h": 0,
+    "errors_last_24h": 0
+  }
+}

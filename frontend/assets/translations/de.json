@@ -2,14 +2,28 @@
   "app": {
     "title": "Abfuhrkalender",
     "subtitle": "Ihr persönlicher Abfallkalender",
-    "language_switch": "Sprache"
+    "language_switch": "Sprache",
+    "loading": "Laden...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "close": "Schließen",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "add": "Hinzufügen",
+    "search": "Suchen",
+    "back": "Zurück"
   },
   "nav": {
     "home": "Startseite",
-    "admin": "Verwaltung"
+    "admin": "Verwaltung",
+    "logout": "Abmelden",
+    "login": "Anmelden"
   },
   "search": {
     "title": "Adresse eingeben",
+    "subtitle": "Geben Sie Ihre Adresse ein, um Ihren persönlichen Abfuhrkalender zu sehen",
     "street_label": "Straße",
     "street_placeholder": "z.B. Musterstraße",
     "house_number_label": "Hausnummer",
@@ -18,17 +32,30 @@
     "postcode_placeholder": "z.B. 10115",
     "city_label": "Stadt",
     "city_placeholder": "z.B. Berlin",
-    "search_button": "Suchen",
-    "searching": "Suche läuft..."
+    "search_button": "Kalender suchen",
+    "searching": "Suche läuft...",
+    "clear": "Löschen",
+    "example": "Beispiel"
   },
   "results": {
-    "today": "Heute",
-    "no_collection_today": "Keine Abholung heute",
-    "next_week": "Nächste 7 Tage",
-    "past_week": "Letzte 7 Tage",
+    "today_title": "Heute",
+    "today_collection": "Heute wird abgeholt!",
+    "today_no_collection": "Keine Abholung heute",
+    "today_no_collection_subtitle": "Alles erledigt! Die nächste Abholung ist bald.",
+    "next_week_title": "Nächste 7 Tage",
+    "next_week_subtitle": "Kommende Abholtermine",
+    "past_week_title": "Letzte 7 Tage",
+    "past_week_subtitle": "Vergangene Abholungen",
     "no_results": "Keine Abholtermine gefunden",
+    "no_results_subtitle": "Bitte überprüfen Sie Ihre Adresse",
     "collection_at": "Abholung um",
-    "unknown_time": "Zeit nicht verfügbar"
+    "unknown_time": "Zeit nicht verfügbar",
+    "days_until_one": "in 1 Tag",
+    "days_until_many": "in {n} Tagen",
+    "days_ago_one": "vor 1 Tag",
+    "days_ago_many": "vor {n} Tagen",
+    "today": "Heute",
+    "tomorrow": "Morgen"
   },
   "waste_types": {
     "organic": "Bioabfall",
@@ -36,7 +63,8 @@
     "plastic": "Gelber Sack",
     "residual": "Restmüll",
     "bulky": "Sperrmüll",
-    "green_waste": "Grünschnitt"
+    "green_waste": "Grünschnitt",
+    "unknown": "Unbekannt"
   },
   "frequency": {
     "regular": "Regelmäßig",
@@ -45,6 +73,8 @@
     "bi_weekly": "Zweiwöchentlich",
     "monthly": "Monatlich",
     "quarterly": "Vierteljährlich",
+    "bi_annually": "Halbjährlich",
+    "annually": "Jährlich",
     "on_demand": "Auf Anfrage",
     "unknown": "Unbekannt"
   },
@@ -55,20 +85,107 @@
     "thursday": "Donnerstag",
     "friday": "Freitag",
     "saturday": "Samstag",
-    "sunday": "Sonntag"
+    "sunday": "Sonntag",
+    "short": {
+      "monday": "Mo",
+      "tuesday": "Di",
+      "wednesday": "Mi",
+      "thursday": "Do",
+      "friday": "Fr",
+      "saturday": "Sa",
+      "sunday": "So"
+    }
   },
   "errors": {
     "network_error": "Netzwerkfehler. Bitte versuchen Sie es erneut.",
     "invalid_address": "Ungültige Adresse.",
+    "invalid_postcode": "Ungültige PLZ. Muss 5 Ziffern haben.",
+    "invalid_street": "Straße ist erforderlich.",
+    "invalid_house_number": "Hausnummer ist erforderlich.",
+    "invalid_city": "Stadt ist erforderlich.",
     "not_found": "Adresse nicht gefunden.",
     "timeout": "Zeitüberschreitung. Bitte versuchen Sie es erneut.",
-    "server_error": "Serverfehler. Bitte versuchen Sie es später."
+    "server_error": "Serverfehler. Bitte versuchen Sie es später.",
+    "validation_error": "Bitte überprüfen Sie Ihre Eingaben.",
+    "rate_limit": "Zu viele Anfragen. Bitte warten Sie einen Moment.",
+    "unknown_error": "Ein unbekannter Fehler ist aufgetreten."
   },
   "admin": {
     "title": "Verwaltung",
-    "test_connection": "Verbindung testen",
+    "subtitle": "Abfuhrkalender-Konfiguration",
+    "login_title": "Anmeldung",
+    "login_username": "Benutzername oder E-Mail",
+    "login_password": "Passwort",
+    "login_button": "Anmelden",
+    "login_loading": "Anmeldung läuft...",
+    "dashboard": "Übersicht",
+    "municipalities": "Gemeinden",
+    "municipalities_subtitle": "Verwalten Sie Abfallwirtschaftsbetriebe",
+    "configurations": "Konfigurationen",
+    "stats": "Statistiken",
+    "cache": "Cache",
+    "settings": "Einstellungen",
+    "table": {
+      "city": "Stadt",
+      "postcode": "PLZ",
+      "provider": "Anbieter",
+      "type": "Typ",
+      "website": "Webseite",
+      "action": "Aktion",
+      "created_at": "Erstellt am",
+      "last_updated": "Zuletzt aktualisiert"
+    },
+    "form": {
+      "add_municipality": "Gemeinde hinzufügen",
+      "edit_municipality": "Gemeinde bearbeiten",
+      "name": "Name",
+      "name_placeholder": "z.B. Awista",
+      "city": "Stadt",
+      "city_placeholder": "z.B. Düsseldorf",
+      "postcode_coverage": "PLZ-Abdeckung",
+      "postcode_placeholder": "z.B. 40210, 40211",
+      "save": "Speichern",
+      "cancel": "Abbrechen",
+      "delete_confirm": "Möchten Sie diese Gemeinde wirklich löschen?"
+    },
+    "stats": {
+      "total_municipalities": "Gemeinden insgesamt",
+      "total_configurations": "Konfigurationen",
+      "cache_entries": "Cache-Einträge",
+      "cache_hit_rate": "Cache-Trefferquote",
+      "average_response_time": "Ø Antwortzeit",
+      "scrapes_last_24h": "Scrapes (24h)",
+      "errors_last_24h": "Fehler (24h)"
+    },
+    "cache_clear": {
+      "title": "Cache leeren",
+      "button": "Cache leeren",
+      "confirm": "Möchten Sie den Cache wirklich leeren?",
+      "success": "Cache erfolgreich geleert",
+      "cleared_count": "{n} Einträge gelöscht"
+    }
+  },
+  "test_connection": {
+    "button": "Verbindung testen",
     "testing": "Teste...",
     "online": "Online",
-    "offline": "Offline"
+    "offline": "Offline",
+    "success": "Verbindung erfolgreich",
+    "failure": "Verbindung fehlgeschlagen",
+    "success_message": "Webseite ist online und erreichbar.",
+    "failure_message": "Verbindung fehlgeschlagen",
+    "network_error": "Netzwerkfehler",
+    "method_http": "HTTP",
+    "method_browser": "Browser"
+  },
+  "toast": {
+    "success_title": "Erfolg",
+    "error_title": "Fehler",
+    "info_title": "Info",
+    "warning_title": "Warnung"
+  },
+  "footer": {
+    "developed_by": "Entwickelt von",
+    "copyright": "© 2026"
   }
 }

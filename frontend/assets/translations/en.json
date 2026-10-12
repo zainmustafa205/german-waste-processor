@@ -2,14 +2,28 @@
   "app": {
     "title": "Waste Collection Calendar",
     "subtitle": "Your personal waste collection calendar",
-    "language_switch": "Language"
+    "language_switch": "Language",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "back": "Back"
   },
   "nav": {
     "home": "Home",
-    "admin": "Admin"
+    "admin": "Admin",
+    "logout": "Logout",
+    "login": "Login"
   },
   "search": {
     "title": "Enter Address",
+    "subtitle": "Enter your address to see your personal waste collection calendar",
     "street_label": "Street",
     "street_placeholder": "e.g. Musterstrasse",
     "house_number_label": "House Number",
@@ -18,17 +32,30 @@
     "postcode_placeholder": "e.g. 10115",
     "city_label": "City",
     "city_placeholder": "e.g. Berlin",
-    "search_button": "Search",
-    "searching": "Searching..."
+    "search_button": "Find Schedule",
+    "searching": "Searching...",
+    "clear": "Clear",
+    "example": "Example"
   },
   "results": {
-    "today": "Today",
-    "no_collection_today": "No collection today",
-    "next_week": "Next 7 Days",
-    "past_week": "Past 7 Days",
+    "today_title": "Today",
+    "today_collection": "Collection today!",
+    "today_no_collection": "No collection today",
+    "today_no_collection_subtitle": "All clear! Next collection is coming soon.",
+    "next_week_title": "Next 7 Days",
+    "next_week_subtitle": "Upcoming collection dates",
+    "past_week_title": "Past 7 Days",
+    "past_week_subtitle": "Previous collections",
     "no_results": "No collection dates found",
+    "no_results_subtitle": "Please check your address",
     "collection_at": "Collection at",
-    "unknown_time": "Time not available"
+    "unknown_time": "Time not available",
+    "days_until_one": "in 1 day",
+    "days_until_many": "in {n} days",
+    "days_ago_one": "1 day ago",
+    "days_ago_many": "{n} days ago",
+    "today": "Today",
+    "tomorrow": "Tomorrow"
   },
   "waste_types": {
     "organic": "Organic",
@@ -36,7 +63,8 @@
     "plastic": "Plastic",
     "residual": "Residual",
     "bulky": "Bulky Waste",
-    "green_waste": "Green Waste"
+    "green_waste": "Green Waste",
+    "unknown": "Unknown"
   },
   "frequency": {
     "regular": "Regular",
@@ -45,6 +73,8 @@
     "bi_weekly": "Bi-weekly",
     "monthly": "Monthly",
     "quarterly": "Quarterly",
+    "bi_annually": "Bi-annually",
+    "annually": "Annually",
     "on_demand": "On-demand",
     "unknown": "Unknown"
   },
@@ -55,20 +85,107 @@
     "thursday": "Thursday",
     "friday": "Friday",
     "saturday": "Saturday",
-    "sunday": "Sunday"
+    "sunday": "Sunday",
+    "short": {
+      "monday": "Mon",
+      "tuesday": "Tue",
+      "wednesday": "Wed",
+      "thursday": "Thu",
+      "friday": "Fri",
+      "saturday": "Sat",
+      "sunday": "Sun"
+    }
   },
   "errors": {
     "network_error": "Network error. Please try again.",
     "invalid_address": "Invalid address.",
+    "invalid_postcode": "Invalid postcode. Must be 5 digits.",
+    "invalid_street": "Street is required.",
+    "invalid_house_number": "House number is required.",
+    "invalid_city": "City is required.",
     "not_found": "Address not found.",
     "timeout": "Request timed out. Please try again.",
-    "server_error": "Server error. Please try later."
+    "server_error": "Server error. Please try later.",
+    "validation_error": "Please check your inputs.",
+    "rate_limit": "Too many requests. Please wait a moment.",
+    "unknown_error": "An unknown error occurred."
   },
   "admin": {
     "title": "Admin",
-    "test_connection": "Test Connection",
+    "subtitle": "Waste Calendar Configuration",
+    "login_title": "Login",
+    "login_username": "Username or Email",
+    "login_password": "Password",
+    "login_button": "Login",
+    "login_loading": "Logging in...",
+    "dashboard": "Dashboard",
+    "municipalities": "Municipalities",
+    "municipalities_subtitle": "Manage waste collection providers",
+    "configurations": "Configurations",
+    "stats": "Statistics",
+    "cache": "Cache",
+    "settings": "Settings",
+    "table": {
+      "city": "City",
+      "postcode": "Postcode",
+      "provider": "Provider",
+      "type": "Type",
+      "website": "Website",
+      "action": "Action",
+      "created_at": "Created",
+      "last_updated": "Last Updated"
+    },
+    "form": {
+      "add_municipality": "Add Municipality",
+      "edit_municipality": "Edit Municipality",
+      "name": "Name",
+      "name_placeholder": "e.g. Awista",
+      "city": "City",
+      "city_placeholder": "e.g. Düsseldorf",
+      "postcode_coverage": "Postcode Coverage",
+      "postcode_placeholder": "e.g. 40210, 40211",
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete_confirm": "Are you sure you want to delete this municipality?"
+    },
+    "stats": {
+      "total_municipalities": "Total Municipalities",
+      "total_configurations": "Configurations",
+      "cache_entries": "Cache Entries",
+      "cache_hit_rate": "Cache Hit Rate",
+      "average_response_time": "Avg Response Time",
+      "scrapes_last_24h": "Scrapes (24h)",
+      "errors_last_24h": "Errors (24h)"
+    },
+    "cache_clear": {
+      "title": "Clear Cache",
+      "button": "Clear Cache",
+      "confirm": "Are you sure you want to clear the cache?",
+      "success": "Cache cleared successfully",
+      "cleared_count": "{n} entries cleared"
+    }
+  },
+  "test_connection": {
+    "button": "Test Connection",
     "testing": "Testing...",
     "online": "Online",
-    "offline": "Offline"
+    "offline": "Offline",
+    "success": "Connection Successful",
+    "failure": "Connection Failed",
+    "success_message": "Website is online and accessible.",
+    "failure_message": "Connection failed",
+    "network_error": "Network error",
+    "method_http": "HTTP",
+    "method_browser": "Browser"
+  },
+  "toast": {
+    "success_title": "Success",
+    "error_title": "Error",
+    "info_title": "Info",
+    "warning_title": "Warning"
+  },
+  "footer": {
+    "developed_by": "Developed by",
+    "copyright": "© 2026"
   }
 }
