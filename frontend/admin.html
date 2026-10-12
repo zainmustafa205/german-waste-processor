@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Admin Panel — German Waste Collection Schedule Processor"
+    />
+    <title>Verwaltung — Abfuhrkalender</title>
+
+    <!-- Tailwind CSS (built) -->
+    <link rel="stylesheet" href="./assets/css/output.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%99%BB%EF%B8%8F%3C/text%3E%3C/svg%3E"
+    />
+  </head>
+  <body class="min-h-screen bg-slate-50 text-slate-900 flex flex-col">
+    <!-- ============================================ -->
+    <!-- Header -->
+    <!-- ============================================ -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40">
+      <div
+        class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between"
+      >
+        <!-- Logo / Title -->
+        <a href="./index.html" class="flex items-center gap-3 group">
+          <div
+            class="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center"
+          >
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+          </div>
+          <div>
+            <h1
+              class="text-xl font-bold text-slate-900 group-hover:text-emerald-600 transition-colors"
+              data-i18n="admin.title"
+            >
+              Verwaltung
+            </h1>
+            <p class="text-xs text-slate-600" data-i18n="admin.subtitle">
+              Abfuhrkalender-Konfiguration
+            </p>
+          </div>
+        </a>
+
+        <!-- Right side: language switch + home link + logout -->
+        <div class="flex items-center gap-3">
+          <!-- Language Switch -->
+          <div class="flex items-center gap-1 bg-slate-100 rounded-lg p-1">
+            <button
+              id="lang-de"
+              class="px-3 py-1 text-sm rounded-md bg-emerald-600 text-white font-medium transition-all"
+            >
+              DE
+            </button>
+            <button
+              id="lang-en"
+              class="px-3 py-1 text-sm rounded-md text-slate-700 font-medium hover:bg-slate-200 transition-all"
+            >
+              EN
+            </button>
+          </div>
+
+          <!-- Home Link -->
+          <a
+            href="./index.html"
+            class="px-3 py-2 text-sm text-slate-700 hover:text-emerald-600 font-medium transition-colors"
+          >
+            <span data-i18n="nav.home">Startseite</span>
+          </a>
+
+          <!-- Logout Button (hidden initially) -->
+          <button
+            id="logout-btn"
+            class="hidden px-3 py-2 text-sm text-red-600 hover:text-red-700 font-medium transition-colors"
+          >
+            <span data-i18n="nav.logout">Abmelden</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- Main Content -->
+    <!-- ============================================ -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-8">
+      <!-- ============================================ -->
+      <!-- Login Screen -->
+      <!-- ============================================ -->
+      <section id="login-screen" class="hidden max-w-md mx-auto">
+        <div class="bg-white rounded-lg shadow-sm border border-slate-200 p-8">
+          <div class="text-center mb-6">
+            <div
+              class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-emerald-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                />
+              </svg>
+            </div>
+            <h2
+              class="text-2xl font-bold text-slate-900 mb-1"
+              data-i18n="admin.login_title"
+            >
+              Anmeldung
+            </h2>
+            <p class="text-sm text-slate-600" data-i18n="admin.login_subtitle">
+              Bitte melden Sie sich an
+            </p>
+          </div>
+
+          <form id="login-form" class="space-y-4">
+            <div>
+              <label
+                for="login-username"
+                class="block text-sm font-medium text-slate-700 mb-1"
+                data-i18n="admin.login_username"
+              >
+                Benutzername oder E-Mail
+              </label>
+              <input
+                type="text"
+                id="login-username"
+                name="username"
+                placeholder="admin"
+                autocomplete="username"
+                class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                required
+              />
+            </div>
+
+            <div>
+              <label
+                for="login-password"
+                class="block text-sm font-medium text-slate-700 mb-1"
+                data-i18n="admin.login_password"
+              >
+                Passwort
+              </label>
+              <input
+                type="password"
+                id="login-password"
+                name="password"
+                placeholder="••••••••"
+                autocomplete="current-password"
+                class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              id="login-btn"
+              class="w-full bg-emerald-600 text-white rounded-md py-2 px-4 font-medium hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-all"
+              data-i18n="admin.login_button"
+            >
+              Anmelden
+            </button>
+
+            <p class="text-xs text-center text-slate-500 mt-4">
+              Demo:
+              <code class="bg-slate-100 px-1.5 py-0.5 rounded text-slate-700"
+                >admin</code
+              >
+              /
+              <code class="bg-slate-100 px-1.5 py-0.5 rounded text-slate-700"
+                >admin123</code
+              >
+            </p>
+          </form>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- Loading Screen -->
+      <!-- ============================================ -->
+      <section id="admin-loading" class="hidden">
+        <div
+          class="bg-white rounded-lg shadow-sm border border-slate-200 p-6 mb-6"
+        >
+          <div class="skeleton h-6 w-48 mb-4"></div>
+          <div class="skeleton h-32 w-full"></div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- Dashboard -->
+      <!-- ============================================ -->
+      <section id="dashboard-screen" class="hidden">
+        <!-- ============================================ -->
+        <!-- Stats Cards -->
+        <!-- ============================================ -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div
+            class="bg-white rounded-lg shadow-sm border border-slate-200 p-4"
+          >
+            <div
+              class="text-xs text-slate-500 uppercase font-semibold mb-1"
+              data-i18n="admin.stats.total_municipalities"
+            >
+              Gemeinden
+            </div>
+            <div
+              id="stat-municipalities"
+              class="text-2xl font-bold text-slate-900"
+            >
+              0
+            </div>
+          </div>
+          <div
+            class="bg-white rounded-lg shadow-sm border border-slate-200 p-4"
+          >
+            <div
+              class="text-xs text-slate-500 uppercase font-semibold mb-1"
+              data-i18n="admin.stats.total_configurations"
+            >
+              Konfigurationen
+            </div>
+            <div
+              id="stat-configurations"
+              class="text-2xl font-bold text-slate-900"
+            >
+              0
+            </div>
+          </div>
+          <div
+            class="bg-white rounded-lg shadow-sm border border-slate-200 p-4"
+          >
+            <div
+              class="text-xs text-slate-500 uppercase font-semibold mb-1"
+              data-i18n="admin.stats.cache_entries"
+            >
+              Cache-Einträge
+            </div>
+            <div id="stat-cache" class="text-2xl font-bold text-slate-900">
+              0
+            </div>
+          </div>
+          <div
+            class="bg-white rounded-lg shadow-sm border border-slate-200 p-4"
+          >
+            <div
+              class="text-xs text-slate-500 uppercase font-semibold mb-1"
+              data-i18n="admin.stats.cache_hit_rate"
+            >
+              Cache-Trefferquote
+            </div>
+            <div id="stat-hit-rate" class="text-2xl font-bold text-slate-900">
+              0%
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- Municipalities Section -->
+        <!-- ============================================ -->
+        <div
+          class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden"
+        >
+          <!-- Header -->
+          <div
+            class="px-6 py-4 border-b border-slate-200 flex items-center justify-between"
+          >
+            <div>
+              <h2
+                class="text-lg font-bold text-slate-900"
+                data-i18n="admin.municipalities"
+              >
+                Gemeinden
+              </h2>
+              <p
+                class="text-xs text-slate-500"
+                data-i18n="admin.municipalities_subtitle"
+              >
+                Verwalten Sie Abfallwirtschaftsbetriebe
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button
+                id="clear-cache-btn"
+                class="px-3 py-2 text-sm text-slate-700 hover:text-emerald-600 font-medium transition-colors border border-slate-200 rounded-md"
+              >
+                <span data-i18n="admin.cache_clear.button">Cache leeren</span>
+              </button>
+              <button
+                id="add-municipality-btn"
+                class="px-4 py-2 text-sm bg-emerald-600 text-white rounded-md hover:bg-emerald-700 transition-colors font-medium"
+              >
+                <span data-i18n="admin.form.add_municipality"
+                  >Gemeinde hinzufügen</span
+                >
+              </button>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead class="bg-slate-50">
+                <tr>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider"
+                    data-i18n="admin.table.city"
+                  >
+                    Stadt
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider"
+                    data-i18n="admin.table.postcode"
+                  >
+                    PLZ
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider"
+                    data-i18n="admin.table.provider"
+                  >
+                    Anbieter
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider"
+                    data-i18n="admin.table.type"
+                  >
+                    Typ
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider"
+                    data-i18n="admin.table.website"
+                  >
+                    Webseite
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider"
+                    data-i18n="admin.table.action"
+                  >
+                    Aktion
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="municipalities-table">
+                <!-- Filled by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================ -->
+    <!-- Footer -->
+    <!-- ============================================ -->
+    <footer class="border-t border-slate-200 bg-white mt-auto">
+      <div
+        class="max-w-7xl mx-auto px-4 py-6 flex items-center justify-between text-sm text-slate-500"
+      >
+        <p>
+          <span data-i18n="footer.copyright">© 2026</span>
+          <span data-i18n="footer.developed_by">Developed by</span>
+          <span class="font-medium text-slate-700">Mirza Zain</span>
+        </p>
+        <p class="text-xs">
+          <span id="api-status" class="text-slate-400">●</span>
+          <span id="api-status-text" class="ml-1">Checking...</span>
+        </p>
+      </div>
+    </footer>
+
+    <!-- ============================================ -->
+    <!-- Add/Edit Municipality Modal -->
+    <!-- ============================================ -->
+    <div
+      id="municipality-modal"
+      class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900 bg-opacity-50 p-4"
+    >
+      <div
+        class="bg-white rounded-lg shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto"
+      >
+        <!-- Modal Header -->
+        <div
+          class="px-6 py-4 border-b border-slate-200 flex items-center justify-between"
+        >
+          <h3
+            id="modal-title"
+            class="text-lg font-bold text-slate-900"
+            data-i18n="admin.form.add_municipality"
+          >
+            Gemeinde hinzufügen
+          </h3>
+          <button
+            id="modal-close-btn"
+            class="text-slate-400 hover:text-slate-600 transition-colors"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Modal Body -->
+        <form id="municipality-form" class="px-6 py-4 space-y-4">
+          <div>
+            <label
+              for="modal-name"
+              class="block text-sm font-medium text-slate-700 mb-1"
+              data-i18n="admin.form.name"
+            >
+              Name
+            </label>
+            <input
+              type="text"
+              id="modal-name"
+              name="name"
+              placeholder="z.B. Awista"
+              class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              required
+            />
+          </div>
+
+          <div>
+            <label
+              for="modal-city"
+              class="block text-sm font-medium text-slate-700 mb-1"
+              data-i18n="admin.form.city"
+            >
+              Stadt
+            </label>
+            <input
+              type="text"
+              id="modal-city"
+              name="city"
+              placeholder="z.B. Düsseldorf"
+              class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              required
+            />
+          </div>
+
+          <div>
+            <label
+              for="modal-postcodes"
+              class="block text-sm font-medium text-slate-700 mb-1"
+              data-i18n="admin.form.postcode_coverage"
+            >
+              PLZ-Abdeckung
+            </label>
+            <input
+              type="text"
+              id="modal-postcodes"
+              name="postcodes"
+              placeholder="z.B. 40210, 40211, 40212"
+              class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              required
+            />
+            <p class="text-xs text-slate-500 mt-1">
+              Mehrere PLZ mit Komma trennen
+            </p>
+          </div>
+
+          <div>
+            <label
+              for="modal-type"
+              class="block text-sm font-medium text-slate-700 mb-1"
+            >
+              Extraktionstyp
+            </label>
+            <select
+              id="modal-type"
+              name="type"
+              class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            >
+              <option value="ics">ICS</option>
+              <option value="json">JSON API</option>
+              <option value="html">HTML</option>
+              <option value="pdf">PDF</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="modal-url"
+              class="block text-sm font-medium text-slate-700 mb-1"
+            >
+              Webseite URL
+            </label>
+            <input
+              type="url"
+              id="modal-url"
+              name="url"
+              placeholder="https://www.awista-kommunal.de/"
+              class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              required
+            />
+          </div>
+        </form>
+
+        <!-- Modal Footer -->
+        <div
+          class="px-6 py-4 border-t border-slate-200 flex items-center justify-end gap-2"
+        >
+          <button
+            type="button"
+            id="modal-cancel-btn"
+            class="px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 rounded-md transition-colors font-medium"
+          >
+            <span data-i18n="admin.form.cancel">Abbrechen</span>
+          </button>
+          <button
+            type="submit"
+            form="municipality-form"
+            class="px-4 py-2 text-sm bg-emerald-600 text-white rounded-md hover:bg-emerald-700 transition-colors font-medium"
+          >
+            <span data-i18n="admin.form.save">Speichern</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- Toast Container -->
+    <!-- ============================================ -->
+    <div
+      id="toast-container"
+      class="fixed bottom-4 right-4 z-50 space-y-2"
+    ></div>
+
+    <!-- ============================================ -->
+    <!-- Scripts -->
+    <!-- ============================================ -->
+    <script type="module" src="./assets/js/admin.js"></script>
+  </body>
+</html>
