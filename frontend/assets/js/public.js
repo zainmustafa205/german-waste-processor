@@ -320,6 +320,8 @@ function renderPastWeekTable(collections) {
 }
 
 function renderResults(data) {
+  // Store last results for re-rendering on language change
+  window.__lastResults = data;
   // Render Today section
   renderTodaySection(data.results);
 
@@ -480,13 +482,23 @@ async function init() {
   elements.langDe.addEventListener("click", () => handleLanguageChange("de"));
   elements.langEn.addEventListener("click", () => handleLanguageChange("en"));
 
+  // ⚡ CRITICAL: Re-render results when language changes
+  window.addEventListener("languageChanged", () => {
+    // If results are shown, re-render them
+    if (
+      !elements.resultsSection.classList.contains("hidden") &&
+      window.__lastResults
+    ) {
+      renderResults(window.__lastResults);
+    }
+  });
+
   // Show welcome state initially
   showState("welcomeState");
 
-  // Check API health (in background)
+  // Check API health
   checkApiHealth();
 }
-
 // Run on DOM ready
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", init);

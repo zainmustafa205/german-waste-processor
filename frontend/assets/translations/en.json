@@ -6,6 +6,7 @@
     "loading": "Loading...",
     "error": "Error",
     "success": "Success",
+    "info": "Info",
     "close": "Close",
     "save": "Save",
     "cancel": "Cancel",
@@ -19,7 +20,8 @@
     "home": "Home",
     "admin": "Admin",
     "logout": "Logout",
-    "login": "Login"
+    "login": "Login",
+    "startseite": "Home"
   },
   "search": {
     "title": "Enter Address",
@@ -50,6 +52,9 @@
     "no_results_subtitle": "Please check your address",
     "collection_at": "Collection at",
     "unknown_time": "Time not available",
+    "date": "Date",
+    "waste_type": "Waste Type",
+    "time": "Time",
     "days_until_one": "in 1 day",
     "days_until_many": "in {n} days",
     "days_ago_one": "1 day ago",
@@ -103,6 +108,7 @@
     "invalid_street": "Street is required.",
     "invalid_house_number": "House number is required.",
     "invalid_city": "City is required.",
+    "invalid_credentials": "Invalid credentials.",
     "not_found": "Address not found.",
     "timeout": "Request timed out. Please try again.",
     "server_error": "Server error. Please try later.",
@@ -114,6 +120,7 @@
     "title": "Admin",
     "subtitle": "Waste Calendar Configuration",
     "login_title": "Login",
+    "login_subtitle": "Please sign in",
     "login_username": "Username or Email",
     "login_password": "Password",
     "login_button": "Login",
@@ -121,10 +128,15 @@
     "dashboard": "Dashboard",
     "municipalities": "Municipalities",
     "municipalities_subtitle": "Manage waste collection providers",
+    "no_municipalities": "No municipalities found",
+    "configs_short": "configs",
     "configurations": "Configurations",
     "stats": "Statistics",
     "cache": "Cache",
     "settings": "Settings",
+    "detail": {
+      "title": "Details"
+    },
     "table": {
       "city": "City",
       "postcode": "Postcode",
@@ -138,14 +150,24 @@
     "form": {
       "add_municipality": "Add Municipality",
       "edit_municipality": "Edit Municipality",
+      "edit": "Edit",
       "name": "Name",
       "name_placeholder": "e.g. Awista",
       "city": "City",
       "city_placeholder": "e.g. Düsseldorf",
       "postcode_coverage": "Postcode Coverage",
+      "postcode_hint": "Separate multiple postcodes with commas",
       "postcode_placeholder": "e.g. 40210, 40211",
+      "website_url": "Website URL",
+      "extraction_methods": "Extraction Methods",
+      "extraction_hint": "Select one or more methods. The order determines priority.",
+      "priority": "Priority",
+      "no_methods": "No methods selected",
+      "move_up": "Move up",
+      "move_down": "Move down",
       "save": "Save",
       "cancel": "Cancel",
+      "saved": "Municipality saved successfully",
       "delete_confirm": "Are you sure you want to delete this municipality?"
     },
     "stats": {
@@ -187,29 +209,5 @@
   "footer": {
     "developed_by": "Developed by",
     "copyright": "© 2026"
-  },
-  "admin": {
-    "form": {
-      "add_municipality": "Add Municipality",
-      "edit_municipality": "Edit Municipality",
-      "name": "Name",
-      "name_placeholder": "e.g. Awista",
-      "city": "City",
-      "city_placeholder": "e.g. Düsseldorf",
-      "postcode_coverage": "Postcode Coverage",
-      "postcode_hint": "Separate multiple postcodes with commas",
-      "website_url": "Website URL",
-      "extraction_methods": "Extraction Methods",
-      "extraction_hint": "Select one or more methods. The order determines priority.",
-      "priority": "Priority",
-      "no_methods": "No methods selected",
-      "move_up": "Move up",
-      "move_down": "Move down",
-      "save": "Save",
-      "cancel": "Cancel",
-      "saved": "Municipality saved successfully",
-      "delete_confirm": "Are you sure you want to delete this municipality?",
-      "edit": "Edit"
-    }
   }
 }

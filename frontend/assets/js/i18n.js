@@ -14,9 +14,6 @@ let currentLanguage = DEFAULT_LANGUAGE;
 
 /**
  * Load translations from JSON file.
- *
- * @param {string} lang - Language code ('de' or 'en')
- * @returns {Promise<object>} - Translations object
  */
 async function loadTranslations(lang) {
   try {
@@ -33,8 +30,6 @@ async function loadTranslations(lang) {
 
 /**
  * Get current language from localStorage or default.
- *
- * @returns {string} - Language code
  */
 function getStoredLanguage() {
   const stored = localStorage.getItem(STORAGE_KEY);
@@ -46,8 +41,7 @@ function getStoredLanguage() {
 
 /**
  * Set language and reload translations.
- *
- * @param {string} lang - Language code
+ * Dispatches 'languageChanged' event so other modules can re-render.
  */
 async function setLanguage(lang) {
   if (!SUPPORTED_LANGUAGES.includes(lang)) {
@@ -58,23 +52,21 @@ async function setLanguage(lang) {
   currentLanguage = lang;
   localStorage.setItem(STORAGE_KEY, lang);
   translations = await loadTranslations(lang);
-  applyTranslations();
 
   // Update HTML lang attribute
   document.documentElement.lang = lang;
 
-  // Dispatch event for other modules
+  // Apply static translations (data-i18n attributes)
+  applyTranslations();
+
+  // Dispatch event so dynamic components can re-render
   window.dispatchEvent(
     new CustomEvent("languageChanged", { detail: { lang } }),
   );
 }
 
 /**
- * Get translation for a key.
- *
- * @param {string} key - Translation key (supports dot notation, e.g., 'search.title')
- * @param {string} fallback - Fallback text
- * @returns {string} - Translated string
+ * Get translation for a key (supports dot notation).
  */
 function t(key, fallback = "") {
   const keys = key.split(".");
@@ -93,19 +85,40 @@ function t(key, fallback = "") {
 
 /**
  * Apply translations to elements with data-i18n attribute.
+ * Also handles data-i18n-placeholder and data-i18n-title.
  */
 function applyTranslations() {
+  // Text content
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
-    const fallback = el.textContent.trim();
-    el.textContent = t(key, fallback);
+    // Use fallback from data-i18n-fallback attr, or existing text, or key
+    const fallback =
+      el.getAttribute("data-i18n-fallback") || el.textContent.trim() || key;
+    const translated = t(key, fallback);
+    if (translated) {
+      el.textContent = translated;
+    }
   });
 
-  // Placeholder translations
+  // Placeholder
   document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
     const key = el.getAttribute("data-i18n-placeholder");
     const fallback = el.getAttribute("placeholder") || "";
     el.setAttribute("placeholder", t(key, fallback));
+  });
+
+  // Title (tooltip)
+  document.querySelectorAll("[data-i18n-title]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-title");
+    const fallback = el.getAttribute("title") || "";
+    el.setAttribute("title", t(key, fallback));
+  });
+
+  // HTML content (for elements with markup)
+  document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-html");
+    const fallback = el.innerHTML;
+    el.innerHTML = t(key, fallback);
   });
 }
 

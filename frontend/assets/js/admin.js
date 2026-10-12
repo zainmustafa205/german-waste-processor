@@ -18,11 +18,7 @@ import {
   getStoredLanguage,
   applyTranslations,
 } from "./i18n.js";
-import {
-  showToast,
-  initTestConnectionButtons,
-  testConnection,
-} from "./test_connection.js";
+import { showToast, initTestConnectionButtons } from "./test_connection.js";
 import { healthCheck } from "./api.js";
 
 // ============================================
@@ -725,14 +721,7 @@ function updateLanguageButtons(active) {
 async function handleLanguageChange(lang) {
   await setLanguage(lang);
   updateLanguageButtons(lang);
-
-  if (mockMunicipalities.length > 0) {
-    renderMunicipalitiesTable(mockMunicipalities);
-    renderMunicipalitiesCards(mockMunicipalities);
-  }
-  if (!elements.modal.classList.contains("hidden")) {
-    renderExtractionMethods();
-  }
+  // Re-render is handled by 'languageChanged' event listener
 }
 
 // ============================================
@@ -774,6 +763,25 @@ async function init() {
   if (elements.detailCloseBtn) {
     elements.detailCloseBtn.addEventListener("click", closeMunicipalityDetail);
   }
+
+  // ⚡ CRITICAL: Re-render table + cards on language change
+  window.addEventListener("languageChanged", () => {
+    if (mockMunicipalities.length > 0) {
+      renderMunicipalitiesTable(mockMunicipalities);
+      renderMunicipalitiesCards(mockMunicipalities);
+    }
+    // Close detail panel on language change (safer)
+    if (
+      elements.detailPanel &&
+      !elements.detailPanel.classList.contains("hidden")
+    ) {
+      closeMunicipalityDetail();
+    }
+    // Re-render extraction methods if modal open
+    if (elements.modal && !elements.modal.classList.contains("hidden")) {
+      renderExtractionMethods();
+    }
+  });
 
   // Close modal on backdrop click
   elements.modal.addEventListener("click", (e) => {
