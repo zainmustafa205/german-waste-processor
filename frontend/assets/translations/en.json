@@ -187,5 +187,29 @@
   "footer": {
     "developed_by": "Developed by",
     "copyright": "© 2026"
+  },
+  "admin": {
+    "form": {
+      "add_municipality": "Add Municipality",
+      "edit_municipality": "Edit Municipality",
+      "name": "Name",
+      "name_placeholder": "e.g. Awista",
+      "city": "City",
+      "city_placeholder": "e.g. Düsseldorf",
+      "postcode_coverage": "Postcode Coverage",
+      "postcode_hint": "Separate multiple postcodes with commas",
+      "website_url": "Website URL",
+      "extraction_methods": "Extraction Methods",
+      "extraction_hint": "Select one or more methods. The order determines priority.",
+      "priority": "Priority",
+      "no_methods": "No methods selected",
+      "move_up": "Move up",
+      "move_down": "Move down",
+      "save": "Save",
+      "cancel": "Cancel",
+      "saved": "Municipality saved successfully",
+      "delete_confirm": "Are you sure you want to delete this municipality?",
+      "edit": "Edit"
+    }
   }
 }

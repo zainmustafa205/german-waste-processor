@@ -187,5 +187,29 @@
   "footer": {
     "developed_by": "Entwickelt von",
     "copyright": "© 2026"
+  },
+  "admin": {
+    "form": {
+      "add_municipality": "Gemeinde hinzufügen",
+      "edit_municipality": "Gemeinde bearbeiten",
+      "name": "Name",
+      "name_placeholder": "z.B. Awista",
+      "city": "Stadt",
+      "city_placeholder": "z.B. Düsseldorf",
+      "postcode_coverage": "PLZ-Abdeckung",
+      "postcode_hint": "Mehrere PLZ mit Komma trennen",
+      "website_url": "Webseite URL",
+      "extraction_methods": "Extraktionsmethoden",
+      "extraction_hint": "Wählen Sie eine oder mehrere Methoden. Die Reihenfolge bestimmt die Priorität.",
+      "priority": "Priorität",
+      "no_methods": "Keine Methoden ausgewählt",
+      "move_up": "Nach oben",
+      "move_down": "Nach unten",
+      "save": "Speichern",
+      "cancel": "Abbrechen",
+      "saved": "Gemeinde erfolgreich gespeichert",
+      "delete_confirm": "Möchten Sie diese Gemeinde wirklich löschen?",
+      "edit": "Bearbeiten"
+    }
   }
 }
